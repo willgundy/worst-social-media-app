@@ -1,8 +1,8 @@
 import {
-  checkAuth,
-  logout,
-  createProfile,
-  getProfiles
+    checkAuth,
+    logout,
+    createProfile,
+    getProfiles
 } from '../fetch-utils.js';
 
 checkAuth();
@@ -10,27 +10,29 @@ checkAuth();
 const logoutButton = document.getElementById('logout');
 const profileContainerEl = document.getElementById('profile-container');
 
-window.addEventListener('load' async () => {
+window.addEventListener('load', async () => {
 
-  const profiles = await getProfiles();
-  profileContainerEl.textContent = '';
+    const profiles = await getProfiles();
 
-  for (let profile of profiles) {
-    const profileEl = document.createElement('div');
-    const linkEl = document.createElement('a');
+    console.log(profiles);
+    profileContainerEl.textContent = '';
 
-    linkEl.textContent = `${profile.email} has ${profile.karma} karma`
+    for (let profile of profiles) {
+        const profileEl = document.createElement('div');
+        const linkEl = document.createElement('a');
 
-    linkEl.href = `../profile/?id=${profile.id}`
+        linkEl.textContent = `${profile.email} has ${profile.karma} karma`;
 
-    profileEl.append(linkEl);
-    profileContainerEl.append(profileEl);
+        linkEl.href = `../profile/?id=${profile.id}`;
 
-  }
+        profileEl.append(linkEl);
+        profileContainerEl.append(profileEl);
+
+    }
 
 });
 
 
 logoutButton.addEventListener('click', () => {
-  logout();
+    logout();
 });
