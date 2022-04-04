@@ -19,8 +19,26 @@
   </header>
   <button id="logout">Logout</button>
   <main>
-    <h3>App profiles</h3>
-    <div id="profile-container">
+    <a href="../profiles">All profiles</a>
+    <div class="send-message">
+      <h3>Send message</h3>
+      <form>
+        <input name="message" />
+        <button>Send</button>
+      </form>
+
+    </div>
+    <div class="message-feed">
+      <h3>Messages Received</h3>
+      <div class="messages">
+
+      </div>
+
+    </div>
+    <div class="karma-voting">
+      <h3 class="karma-class">Karma</h3>
+      <button>Add</button>
+      <button>decrement</button>
 
     </div>
 
@@ -28,7 +46,7 @@
   <footer>
 
   </footer>
-  <script type="module" src="./profiles.js"></script>
+  <script type="module" src="./profile.js"></script>
 </body>
 
 </html>
