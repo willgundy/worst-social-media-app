@@ -30,7 +30,7 @@ form.addEventListener('submit', async e => {
     const message = data.get('message');
 
     const profileInfo = await getMyProfile();
-    const profile = getProfile(id);
+    const profile = await getProfile(id);
     const senderId = profileInfo.id;
     const recipientId = id;
     const messageContent = { sender_id: senderId, recipient_id: recipientId, text: message };
