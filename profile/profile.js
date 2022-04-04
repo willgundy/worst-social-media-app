@@ -1,36 +1,40 @@
 import {
-  checkAuth,
-  logout,
-  createProfile,
-  getProfiles
+    checkAuth,
+    logout,
+    createProfile,
+    getProfiles,
+    getMyProfile,
+    createMessage,
 } from '../fetch-utils.js';
+
+const logoutButton = document.getElementById('logout');
+const form = document.querySelector('form');
+const messageContainer = document.querySelector('.messages');
+const addButton = document.querySelector('.addButton');
+const decrementButton = document.querySelector('.decrementButton');
+const karmaHeaderEl = document.querySelector('.karma-class');
 
 checkAuth();
 
-const logoutButton = document.getElementById('logout');
-const profileContainerEl = document.getElementById('profile-container');
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
 
-window.addEventListener('load' async () => {
+form.addEventListener('submit', async e => {
+    e.preventDefault();
 
-  const profiles = await getProfiles();
-  profileContainerEl.textContent = '';
+    const data = new FormData(form);
+    const message = data.get('message');
 
-  for (let profile of profiles) {
-    const profileEl = document.createElement('div');
-    const linkEl = document.createElement('a');
+    const profileInfo = await getMyProfile();
+    const senderId = profileInfo.id;
+    const recipientId = id;
+    const messageContent = { sender_id: senderId, recipient_id: recipientId, text: message };
 
-    linkEl.textContent = `${profile.email} has ${profile.karma} karma`
-
-    linkEl.href = `../profile/?id=${profile.id}`
-
-    profileEl.append(linkEl);
-    profileContainerEl.append(profileEl);
-
-  }
-
+    await createMessage(messageContent);
 });
 
 
+
 logoutButton.addEventListener('click', () => {
-  logout();
+    logout();
 });
