@@ -4,60 +4,82 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-export function getUser () {
-  return client.auth.session() && client.auth.session().user;
+export function getUser() {
+    return client.auth.session() && client.auth.session().user;
 }
 
-export function checkAuth () {
-  const user = getUser();
+export function checkAuth() {
+    const user = getUser();
 
-  if (!user) location.replace('../');
+    if (!user) location.replace('../');
 }
 
-export function redirectIfLoggedIn () {
-  if (getUser()) {
-    location.replace('./profiles');
-  }
+export function redirectIfLoggedIn() {
+    if (getUser()) {
+        location.replace('./profiles');
+    }
 }
 
-export async function createProfile () {
-  const response = await client
-    .from('profiles')
-    .insert({})
-    .single();
+export async function createProfile() {
+    const response = await client
+        .from('profiles')
+        .insert({})
+        .single();
 
 
-  return response.body;
+    return response.body;
 }
 
-export async function getProfiles () {
-  const response = await client
-    .from('profiles')
-    .select('*');
+export async function getProfiles() {
+    const response = await client
+        .from('profiles')
+        .select('*');
 
-  return response.body;
+    return response.body;
 }
 
 
 
-export async function signupUser (email, password) {
-  const response = await client.auth.signUp({ email, password });
+export async function signupUser(email, password) {
+    const response = await client.auth.signUp({ email, password });
 
-  await createProfile();
+    await createProfile();
 
-  return response.user;
+    return response.user;
 }
 
-export async function signInUser (email, password) {
-  const response = await client.auth.signIn({ email, password });
+export async function signInUser(email, password) {
+    const response = await client.auth.signIn({ email, password });
 
-  return response.user;
+    return response.user;
 }
 
-export async function logout () {
-  await client.auth.signOut();
+export async function logout() {
+    await client.auth.signOut();
 
-  return (window.location.href = '../');
+    return (window.location.href = '../');
+}
+
+export async function getMyProfile() {
+    const user = getUser();
+
+    const response = await client
+        .from('profiles')
+        .select('*')
+        .match({ email: user.email })
+        .single();
+    
+    return response.body;
+
+}
+
+export async function createMessage(message) {
+    const response = await client
+        .from('messages')
+        .insert(message)
+        .single();
+    
+    return response.body;
 }
 
 // function checkError({ data, error }) {
