@@ -26,6 +26,13 @@ async function displayProfiles() {
 
     const profiles = await getProfiles(sortParameter.value, ascending);
 
+    renderProfiles(profiles);
+
+}
+
+
+function renderProfiles(profiles) {
+
     profileContainerEl.textContent = '';
 
     for (let profile of profiles) {
