@@ -62,7 +62,6 @@ form.addEventListener('submit', async e => {
 
 window.addEventListener('load', async () => {
     fetchAndDisplayProfile();
-    // mySubscription();
 });
 
 window.addEventListener('load', async () => {
@@ -75,36 +74,6 @@ window.addEventListener('load', async () => {
         })
         .subscribe();
 });
-
-// export async function mySubscription() {
-//     const response = await client
-//         .from('*')
-//         .on('*', payload => {
-//             if (payload.eventType === 'INSERT' ){
-                
-//             }
-//         })
-//         .subscribe();
-
-
-//     return response.body;
-// }
-
-// window.addEventListener('load', async () => {
-//     await client
-//         .from('*')
-//         .on('*', payload => {
-//             console.log('Change received!', payload);
-//         })
-//         .subscribe();
-
-// });
-
-
-// window.addEventListener('change', async () => {
-//     mySubscription();
-//     fetchAndDisplayProfile();
-// });
 
 function shortDate(date) {
     var dateFormat = new Date(date);
