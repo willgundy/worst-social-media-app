@@ -29,10 +29,11 @@ export async function createProfile() {
     return response.body;
 }
 
-export async function getProfiles() {
+export async function getProfiles(type, trueFalse) {
     const response = await client
         .from('profiles')
-        .select('*');
+        .select('*')
+        .order(type, { ascending: trueFalse });
 
     return response.body;
 }
@@ -42,7 +43,11 @@ export async function getProfiles() {
 export async function signupUser(email, password) {
     const response = await client.auth.signUp({ email, password });
 
-    await createProfile();
+    if (response.user) {
+        const newProfile = await createProfile();
+    } else {
+        console.log('no profile created');
+    }
 
     return response.user;
 }
