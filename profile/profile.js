@@ -46,6 +46,15 @@ window.addEventListener('load', async () => {
     fetchAndDisplayProfile();
 });
 
+function shortDate(date) {
+    var dateFormat = new Date(date);
+    
+    return dateFormat.toLocaleString('en-US');
+    
+    // (dateFormat.getMonth() + 1) + 
+    // '/' + dateFormat.getDate() + '/' + dateFormat.getFullYear() + '' + dateFormat.getHours() + ':' + dateFormat.getMinutes();
+}
+
 async function fetchAndDisplayProfile(profile) {
     //karma header on profile
     const { email, karma } = profile ? profile : await getProfile(id);
@@ -58,12 +67,20 @@ async function fetchAndDisplayProfile(profile) {
 
     for (let message of displayMessages) {
         const messageDiv = document.createElement('p');
+        messageDiv.classList.add('messagetext');
 
-        messageDiv.textContent = message.text;
+
+        const shortDateText = shortDate(message.created_at);
+
+
+        messageDiv.textContent = `${message.text} from ${message.profiles.email} (${message.profiles.karma}) at ${shortDateText} `;
 
         messageContainer.append(messageDiv);
     }
 }
+
+
+
 
 
 
