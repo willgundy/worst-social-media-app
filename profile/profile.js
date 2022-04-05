@@ -8,7 +8,8 @@ import {
     decrementKarma,
     incrementKarma,
     imageUpload,
-    updateProfileImage
+    updateProfileImage,
+    client,
 } from '../fetch-utils.js';
 
 const logoutButton = document.getElementById('logout');
@@ -61,7 +62,49 @@ form.addEventListener('submit', async e => {
 
 window.addEventListener('load', async () => {
     fetchAndDisplayProfile();
+    // mySubscription();
 });
+
+window.addEventListener('load', async () => {
+    await client
+        .from('*')
+        .on('*', payload => {
+            if (payload.eventType === 'INSERT') {
+                renderMessages();
+            }
+        })
+        .subscribe();
+});
+
+// export async function mySubscription() {
+//     const response = await client
+//         .from('*')
+//         .on('*', payload => {
+//             if (payload.eventType === 'INSERT' ){
+                
+//             }
+//         })
+//         .subscribe();
+
+
+//     return response.body;
+// }
+
+// window.addEventListener('load', async () => {
+//     await client
+//         .from('*')
+//         .on('*', payload => {
+//             console.log('Change received!', payload);
+//         })
+//         .subscribe();
+
+// });
+
+
+// window.addEventListener('change', async () => {
+//     mySubscription();
+//     fetchAndDisplayProfile();
+// });
 
 function shortDate(date) {
     var dateFormat = new Date(date);
