@@ -128,6 +128,32 @@ export async function decrementKarma(profileId) {
     return response.body;
 }
 
+
+export async function imageUpload(filePath, imageFile) {
+    const response = await client
+        .storage
+        .from('profile-images')
+        .upload(filePath, imageFile, {
+            cacheControl: '3600',
+            upsert: true
+        });
+
+    return response.body;
+}
+
+export async function updateProfileImage(id, imageURL) {
+    const response = await client
+        .from('profiles')
+        .update({ avatar: imageURL })
+        .match({ id: id })
+        .single();
+    
+    return response.body;
+}
+
+
+
+
 // function checkError({ data, error }) {
 //     return error ? console.error(error) : data;
 // }

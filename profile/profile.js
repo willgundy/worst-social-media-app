@@ -6,7 +6,9 @@ import {
     getMessages,
     getProfile,
     decrementKarma,
-    incrementKarma
+    incrementKarma,
+    imageUpload,
+    updateProfileImage
 } from '../fetch-utils.js';
 
 const logoutButton = document.getElementById('logout');
@@ -15,11 +17,28 @@ const messageContainer = document.querySelector('.messages');
 const addButton = document.querySelector('.addButton');
 const decrementButton = document.querySelector('.decrementButton');
 const karmaHeaderEl = document.querySelector('.karma-class');
-
-checkAuth();
+const imageInput = document.querySelector('#profileImage');
+const profileName = document.querySelector('#profileName');
+const profileAvatar = document.querySelector('#profileAvatar');
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
+
+imageInput.addEventListener('change', async (e) => {
+    const imageFile = e.target.files[0];
+    console.log(imageFile.name);
+    const filePath = `public/${imageFile.name}.jpg`;
+
+    const tablePath = 'https://afgbmdkvqbvliaergujk.supabase.co/storage/v1/object/public/profile-images/' + filePath;
+
+    await imageUpload(filePath, imageFile);
+
+    updateProfileImage(id, tablePath);
+
+    profileAvatar.src = tablePath;
+});
+
+checkAuth();
 
 form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -82,8 +101,11 @@ async function renderMessages() {
 
 
 async function renderKarma(profile) {
-    const { email, karma } = profile ? profile : await getProfile(id);
+    const { email, karma, avatar } = profile ? profile : await getProfile(id);
     karmaHeaderEl.textContent = `Karma for ${email} is ${karma}`;
+
+    profileName.textContent = email;
+    profileAvatar.src = avatar;
 }
 
 
@@ -105,3 +127,4 @@ addButton.addEventListener('click', async () => {
 
     fetchAndDisplayProfile(profile);
 });
+

@@ -196,4 +196,18 @@ button:hover{
     color: white;
 }
 
+.flex-column {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+
 
