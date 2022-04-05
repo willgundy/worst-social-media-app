@@ -44,10 +44,8 @@ export async function signupUser(email, password) {
     const response = await client.auth.signUp({ email, password });
 
     if (response.user) {
-        const newProfile = await createProfile();
-    } else {
-        console.log('no profile created');
-    }
+        await createProfile();
+    } 
 
     return response.user;
 }
