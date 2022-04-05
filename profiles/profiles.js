@@ -1,7 +1,6 @@
 import {
     checkAuth,
     logout,
-    createProfile,
     getProfiles
 } from '../fetch-utils.js';
 

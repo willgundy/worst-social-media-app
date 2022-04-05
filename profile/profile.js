@@ -1,8 +1,6 @@
 import {
     checkAuth,
     logout,
-    createProfile,
-    getProfiles,
     getMyProfile,
     createMessage,
     getMessages,

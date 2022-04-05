@@ -146,8 +146,8 @@ a {
 }
 
 .profile:hover, .all-profiles:hover, .messagetext:hover{
-    background-color: lightblue;
-    transform: scale(1.2);
+    background-color: palegreen;
+    transform: scale(1.1);
     border: none;
 
 }
@@ -171,13 +171,15 @@ a {
 form{
     display: flex;
     flex-direction: column;
-    width: 50%;
     justify-content: center;
 }
 
 input{
-    height: 7vh;
     border-radius: 5px;
+}
+
+.inputMessage {
+    height: 7vh;
 }
 
 button{
@@ -189,11 +191,9 @@ button{
 }
 
 button:hover{
-
     transform: scale(1.1);
     background-color: black;
     color: white;
-
 }
 
 
