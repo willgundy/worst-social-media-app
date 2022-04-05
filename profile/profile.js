@@ -55,10 +55,13 @@ function shortDate(date) {
 
 async function fetchAndDisplayProfile(profile) {
     //karma header on profile
-    const { email, karma } = profile ? profile : await getProfile(id);
-    karmaHeaderEl.textContent = `Karma for ${email} is ${karma}`;
+    renderKarma(profile);
 
     //create messages for profile
+    renderMessages();
+}
+
+async function renderMessages() {
     messageContainer.innerHTML = '';
 
     const displayMessages = await getMessages(id);
@@ -77,6 +80,11 @@ async function fetchAndDisplayProfile(profile) {
     }
 }
 
+
+async function renderKarma(profile) {
+    const { email, karma } = profile ? profile : await getProfile(id);
+    karmaHeaderEl.textContent = `Karma for ${email} is ${karma}`;
+}
 
 
 
