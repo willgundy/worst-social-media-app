@@ -20,6 +20,8 @@ window.addEventListener('load', async () => {
     for (let profile of profiles) {
         const profileEl = document.createElement('div');
         const linkEl = document.createElement('a');
+        profileEl.classList.add('profile');
+        
 
         linkEl.textContent = `${profile.email} has ${profile.karma} karma`;
 
