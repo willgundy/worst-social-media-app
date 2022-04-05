@@ -3,6 +3,7 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+
 export function getUser() {
     return client.auth.session() && client.auth.session().user;
 }
@@ -137,6 +138,18 @@ export async function imageUpload(filePath, imageFile) {
             cacheControl: '3600',
             upsert: true
         });
+
+    return response.body;
+}
+
+export async function mySubscription() {
+    const response = await client
+        .from('*')
+        .on('*', payload => {
+            console.log('Change received!', payload);
+        })
+        .subscribe();
+
 
     return response.body;
 }

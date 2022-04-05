@@ -8,7 +8,8 @@ import {
     decrementKarma,
     incrementKarma,
     imageUpload,
-    updateProfileImage
+    updateProfileImage,
+    mySubscription,
 } from '../fetch-utils.js';
 
 const logoutButton = document.getElementById('logout');
@@ -61,7 +62,13 @@ form.addEventListener('submit', async e => {
 
 window.addEventListener('load', async () => {
     fetchAndDisplayProfile();
+    mySubscription();
 });
+
+// window.addEventListener('change', async () => {
+//     mySubscription();
+//     fetchAndDisplayProfile();
+// });
 
 function shortDate(date) {
     var dateFormat = new Date(date);
