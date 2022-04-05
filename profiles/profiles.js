@@ -8,19 +8,31 @@ checkAuth();
 
 const logoutButton = document.getElementById('logout');
 const profileContainerEl = document.getElementById('profile-container');
+const sortParameter = document.getElementById('sort-param');
+const ascdescSelect = document.getElementById('sort-asc-desc');
 
-window.addEventListener('load', async () => {
+window.addEventListener('load', displayProfiles);
+sortParameter.addEventListener('change', displayProfiles);
+ascdescSelect.addEventListener('change', displayProfiles);
 
-    const profiles = await getProfiles();
 
-    console.log(profiles);
+logoutButton.addEventListener('click', () => {
+    logout();
+});
+
+
+async function displayProfiles() {
+    const ascending = ascdescSelect.value === 'asc' ? true : false;
+
+    const profiles = await getProfiles(sortParameter.value, ascending);
+
     profileContainerEl.textContent = '';
 
     for (let profile of profiles) {
         const profileEl = document.createElement('div');
         const linkEl = document.createElement('a');
         profileEl.classList.add('profile');
-        
+      
 
         linkEl.textContent = `${profile.email} has ${profile.karma} karma`;
 
@@ -30,10 +42,4 @@ window.addEventListener('load', async () => {
         profileContainerEl.append(profileEl);
 
     }
-
-});
-
-
-logoutButton.addEventListener('click', () => {
-    logout();
-});
+}
