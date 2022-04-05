@@ -48,7 +48,6 @@ form.addEventListener('submit', async e => {
     const message = data.get('message');
 
     const profileInfo = await getMyProfile();
-    const profile = await getProfile(id);
     const senderId = profileInfo.id;
     const recipientId = id;
     const messageContent = { sender_id: senderId, recipient_id: recipientId, text: message };
@@ -56,8 +55,6 @@ form.addEventListener('submit', async e => {
     await createMessage(messageContent);
 
     form.reset();
-
-    fetchAndDisplayProfile(profile);
 });
 
 window.addEventListener('load', async () => {
