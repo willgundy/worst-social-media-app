@@ -154,7 +154,7 @@ export async function updateProfileImage (id, imageURL) {
 
 export async function sendChat (someMessage) {
   const response = await client
-    .from('chats');
+    .from('chats')
     .insert({
       text: someMessage
     })

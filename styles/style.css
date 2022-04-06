@@ -135,7 +135,7 @@ footer {
   border: 1px solid black;
   border-radius: 5px;
   padding: 5px;
-  margin: 20px;
+  margin: 10px;
   text-align: center;
   box-shadow: var(--shadow);
 }
@@ -195,7 +195,7 @@ button {
 
 button:hover {
   transform: scale(1.1);
-  background-color: black;
+  background-color: goldenrod;
   color: white;
 }
 
@@ -214,7 +214,7 @@ button:hover {
 
 .input-area input {
   width: 95%;
-  border: none;
+  border: solid limegreen 5px;
   text-align: right;
 }
 
@@ -229,7 +229,7 @@ main {
 
 .chatroom {
   width: 85%;
-  height: 90vh;
+  height: 70vh;
   border: solid 2px black;
   display: grid;
   grid-template-rows: 20fr 2fr;
@@ -237,6 +237,7 @@ main {
 
 .message img {
   width: 100px;
+  border: solid black 1px;
 }
 
 .chat-message {
@@ -256,4 +257,8 @@ p {
 
 .is-me {
   background-color: plum;
+}
+
+.send-button {
+  background-color: lightcoral;
 }

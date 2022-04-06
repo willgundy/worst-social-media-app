@@ -3,11 +3,13 @@ import {
   logout,
   sendChat,
   client,
+  getUser,
 } from '../fetch-utils.js';
 
 const logoutButton = document.getElementById('logout');
-const theChatsEl = document.querySelector('the-chats');
+const allChatsEl = document.getElementById('all-chats');
 const formEl = document.querySelector('form');
+//const currentUser = getUser();
 
 checkAuth();
 
@@ -20,7 +22,13 @@ formEl.addEventListener('submit', async e => {
 
   const data = new FormData(formEl);
 
-  await sendChat(data.get('message'))
+  await sendChat(data.get('message'));
+
+  //await sendChat({
+  //text: data.get('message'),
+  //sender_email: currentUser.email,
+  //user_id: currentUser.id
+  //});
 
   formEl.reset();
 });
@@ -30,6 +38,7 @@ window.addEventListener('load', async () => {
   await client
     .from('chats')
     .on('INSERT', payload => {
+      const currentUser = getUser();
       const chatItemOuterEl = document.createElement('div');
       const chatSenderEl = document.createElement('p');
       const chatMessageEl = document.createElement('p');
@@ -37,14 +46,14 @@ window.addEventListener('load', async () => {
       chatSenderEl.classList.add('sender');
 
       if (payload.new.sender_email === currentUser.email) {
-        chatSenderEl.classList.add('is-me')
+        chatSenderEl.classList.add('is-me');
       }
 
       chatItemOuterEl.classList.add('chat-message');
       chatSenderEl.textContent = payload.new.sender_email;
       chatMessageEl.textContent = payload.new.text;
       chatItemOuterEl.append(chatMessageEl, chatSenderEl);
-      theChatsEl.append(chatItemOuterEl);
-    });
-    .subscribe()
+      allChatsEl.append(chatItemOuterEl);
+    })
+    .subscribe();
 });
