@@ -242,7 +242,7 @@ main {
 
 input:focus {
     outline: none;
-    background-color: lightblue;
+    background-color: gold;
 }
 
 .input-area {
