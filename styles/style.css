@@ -238,3 +238,17 @@ main {
 .message img {
   width: 100px;
 }
+
+.chat-message {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chat-message .sender {
+  color: orangered;
+  font-family: 1.5rem;
+}
+
+p {
+  margin: 10px;
+}
