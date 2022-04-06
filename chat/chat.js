@@ -1,15 +1,7 @@
 import {
   checkAuth,
   logout,
-  getMyProfile,
-  createMessage,
-  getMessages,
-  getProfile,
-  decrementKarma,
-  incrementKarma,
-  imageUpload,
-  updateProfileImage,
-  client,
+  sendChat,
 } from '../fetch-utils.js';
 
 const logoutButton = document.getElementById('logout');
@@ -20,6 +12,14 @@ checkAuth();
 
 logoutButton.addEventListener('click', () => {
   logout();
+});
+
+formEl.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const data = new FormData(formEl);
+
+  await sendChat(data.get('message'))
 });
 
 

@@ -152,6 +152,17 @@ export async function updateProfileImage (id, imageURL) {
   return response.body;
 }
 
+export async function sendChat (someMessage) {
+  const repsonse = await client
+    .from('chats');
+    .insert({
+      text: someMessage
+    })
+    .single();
+
+  return response.body;
+}
+
 
 
 
