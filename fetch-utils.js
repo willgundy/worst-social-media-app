@@ -20,6 +20,18 @@ export function redirectIfLoggedIn() {
     }
 }
 
+export async function sendChat(someMessage) {
+    // how can i read the errors?
+    const response = await client
+        .from('chats')
+        .insert({
+            text: someMessage
+        }) 
+        .single();
+
+    return response.body;
+}
+
 export async function createProfile() {
     const response = await client
         .from('profiles')
