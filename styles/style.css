@@ -213,14 +213,14 @@ button:hover {
 }
 
 .input-area input {
-  width: 90%;
+  width: 95%;
   border: none;
   text-align: right;
 }
 
 .input-area {
-  border-top: solid 1px black;
-  padding: 5px;
+  border-top: solid 2px black;
+  padding: 8px;
 }
 
 main {
@@ -228,11 +228,11 @@ main {
 }
 
 .chatroom {
-  width: 90%;
-  height: 80vh;
-  border: solid 1px black;
+  width: 85%;
+  height: 90vh;
+  border: solid 2px black;
   display: grid;
-  grid-template-rows: 19fr 1fr;
+  grid-template-rows: 20fr 2fr;
 }
 
 .message img {
