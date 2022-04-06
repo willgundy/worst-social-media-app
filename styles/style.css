@@ -221,6 +221,15 @@ main {
     grid-template-rows: 19fr 1fr;
 }
 
+.game{
+    width: 90%;
+    height: 80vh;
+    border: solid 3px red;
+    display: grid;
+    grid-template-rows: 19fr 1fr;
+    position: relative;
+}
+
 .input-area input {
     width: 90%;
     border: none;
@@ -237,6 +246,29 @@ main {
     transform: scale(1.0);
     background-color: black;
     color: white;
+}
+
+.input-area2 input {
+    width: 90%;
+    border: none;
+    text-align: left;
+}
+
+.input-area2 button {
+    width: 100%;
+    transform: 0;
+}
+
+.input-area2 button:hover {
+    width: 100%;
+    transform: scale(1.0);
+    background-color: black;
+    color: white;
+}
+
+.input-area2 {
+    border-top: dotted 1px black;
+    padding: 5px;
 }
 
 
@@ -269,6 +301,10 @@ p {
 .is-me {
     border: solid 1px black;
     color: red !important;
+}
+
+.player{
+    position: absolute;
 }
 
 

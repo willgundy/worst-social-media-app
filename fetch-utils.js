@@ -20,6 +20,26 @@ export function redirectIfLoggedIn() {
     }
 }
 
+export async function getOnlinePlayers() {
+    const response = await client
+        .from('profiles')
+        .select('*')
+        .match({ is_playing: true });
+
+    return response.body;
+}
+
+export async function updatePlayer(updatedPlayer) {
+    const response = await client
+        .from('profiles')
+        .update(updatedPlayer)
+        .match({ id: updatedPlayer.id })
+        .single();
+
+    return response.body;
+
+}
+
 export async function sendChat(someMessage) {
     // how can i read the errors?
     const response = await client
