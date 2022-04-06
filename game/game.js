@@ -22,40 +22,40 @@ buttonEl.addEventListener('click', async (e) => {
 
 });
 
-const STEP = 30;
+const MOVE = 30;
 const GAME_HEIGHT = 550;
 const GAME_WIDTH = 750;
 
 window.addEventListener('keydown', async (e) => {
     if (e.key === 'w') {
-        currentPlayer.y_position -= STEP;
+        currentPlayer.y_position -= MOVE;
 
 
-        if (currentPlayer.y_position < STEP) {
+        if (currentPlayer.y_position < MOVE) {
             currentPlayer.y_position = GAME_HEIGHT;
         }
     }
     if (e.key === 'd') {
-        currentPlayer.x_position += STEP;
+        currentPlayer.x_position += MOVE;
 
 
         if (currentPlayer.x_position > GAME_WIDTH) {
-            currentPlayer.x_position = STEP;
+            currentPlayer.x_position = MOVE;
         }
     }
     if (e.key === 's') { 
-        currentPlayer.y_position += STEP;
+        currentPlayer.y_position += MOVE;
 
 
         if (currentPlayer.y_position > GAME_HEIGHT) {
-            currentPlayer.y_position = STEP;
+            currentPlayer.y_position = MOVE;
         }
     }
     if (e.key === 'a') {
-        currentPlayer.x_position -= STEP;
+        currentPlayer.x_position -= MOVE;
 
 
-        if (currentPlayer.x_position < STEP) {
+        if (currentPlayer.x_position < MOVE) {
             currentPlayer.x_position = GAME_WIDTH;
         }
     }
@@ -87,7 +87,7 @@ async function fetchAndDisplayOnlinePlayers() {
     for (let player of activePlayers) {
 
         const playerEl = document.createElement('div');
-        playerEl.textContent = `😋 ${player.email}`;
+        playerEl.textContent = `🐯 ${player.email}`;
         playerEl.classList.add('player');
         playerEl.style.transform = `translate(${player.x_position}px, ${player.y_position}px)`;
 
