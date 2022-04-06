@@ -66,13 +66,13 @@ window.addEventListener('keydown', async (e) => {
 
 window.addEventListener('load', async () => {
     currentPlayer = await getMyProfile();
-    fetchAndDisplayActivePlayers();
+    fetchAndDisplayOnlinePlayers();
     await client
-    // hey, listen to the chats room
+
         .from('profiles')
-        // if a row is added, let me know and tell about that row
+        // eslint-disable-next-line
         .on('UPDATE', (payload) => { 
-            fetchAndDisplayActivePlayers();
+            fetchAndDisplayOnlinePlayers();
         })
         .subscribe();
 
@@ -80,7 +80,7 @@ window.addEventListener('load', async () => {
 
 
 
-async function fetchAndDisplayActivePlayers() {
+async function fetchAndDisplayOnlinePlayers() {
     const activePlayers = await getOnlinePlayers();
 
     allPlayersEl.textContent = '';
