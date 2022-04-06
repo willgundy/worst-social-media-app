@@ -247,8 +247,13 @@ main {
 .chat-message .sender {
   color: orangered;
   font-family: 1.5rem;
+  margin: 1;
 }
 
 p {
   margin: 10px;
+}
+
+.is-me {
+  background-color: plum;
 }

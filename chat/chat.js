@@ -34,8 +34,13 @@ window.addEventListener('load', async () => {
       const chatSenderEl = document.createElement('p');
       const chatMessageEl = document.createElement('p');
 
-      chatItemOuterEl.classList.add('chat-message');
       chatSenderEl.classList.add('sender');
+
+      if (payload.new.sender_email === currentUser.email) {
+        chatSenderEl.classList.add('is-me')
+      }
+
+      chatItemOuterEl.classList.add('chat-message');
       chatSenderEl.textContent = payload.new.sender_email;
       chatMessageEl.textContent = payload.new.text;
       chatItemOuterEl.append(chatMessageEl, chatSenderEl);
